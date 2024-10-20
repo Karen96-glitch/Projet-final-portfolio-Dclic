@@ -7,7 +7,24 @@
     <div class="portofolio">
     <img src="C:\Users\chedo\Desktop\Développement web\AT SAG - VDC-90-min.jpg" alt="AT SAG - VDC-90-min.jpg" class="portfolio-img" style="width: 100px; height: 100px;"> 
     <title>Mon Portofolio</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="styles.css">
+      <style>
+        .portfolio-img {
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .portfolio-img:hover {
+            transform: scale(1.1);
+        }
+        .project {
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .project:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
 </head>
 <body>
     
@@ -131,15 +148,10 @@
         // Fonction pour le défilement fluide
         document.querySelectorAll('nav a').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
-                e.preventDefault(); // Empêche le comportement par défaut
-
-                const targetId = this.getAttribute('href'); // Récupère l'ID de la section cible
-                const targetSection = document.querySelector(targetId); // Sélectionne la section cible
-
-                // Défilement fluide vers la section
-                targetSection.scrollIntoView({
-                    behavior: 'smooth'
-                });
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                targetSection.scrollIntoView({ behavior: 'smooth' });
             });
         });
 
@@ -151,8 +163,17 @@
 
             if (!name || !email || !message) {
                 alert("Tous les champs doivent être remplis.");
-                e.preventDefault(); // Empêche l'envoi du formulaire
+                e.preventDefault();
+            } else {
+                alert("Merci pour votre message !");
             }
+        });
+
+        // Détails des projets
+        document.querySelectorAll('.project').forEach(project => {
+            project.addEventListener('click', function() {
+                alert(this.querySelector('h3').innerText + ": " + this.querySelector('p').innerText);
+            });
         });
     </script>
 </body>
